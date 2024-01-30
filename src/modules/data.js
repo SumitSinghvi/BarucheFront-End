@@ -331,46 +331,20 @@ export async function getCategoriesList(offset = 0, limit = 100) {
 
 export async function getCategoryByHandle(categoryHandle) {
   try {
-    const handles = categoryHandle.map((handle, index) =>
-      categoryHandle.slice(0, index + 1).join("/")
-    );
-    const product_categories = [];
-    for (const handle of handles) {
-      const { product_categories: { [0]: category } } =
-        await medusaClient.productCategories.list(
-          {
-            handle: handle,
-          },
-          {
-            next: {
-              tags: ["categories"],
-            },
-          }
-        );
-      product_categories.push(category);
-    }
-    return {
-      product_categories,
-    };
+    return medusaClient.productCategories.list({ handle: categoryHandle })
+    .then(({product_categories})=> product_categories[0])
   } catch (err) {
     throw err;
   }
 }
 
-export async function getProductsByCategoryHandle({
-  pageParam = 0,
-  handle,
-}) {
+export async function getProductsByCategoryHandle({id}) {
   try {
-    const { id } = await getCategoryByHandle([handle]);
-    const { response, nextPage } = await getProductsList({
-      pageParam,
-      queryParams: { category_id: [id] },
-    });
-    return {
-      response,
-      nextPage,
-    };
+    return medusaClient.products.list({
+      category_id: [id],
+      currency_code:"inr",
+    })
+    .then(({products}) => products)
   } catch (err) {
     throw err;
   }

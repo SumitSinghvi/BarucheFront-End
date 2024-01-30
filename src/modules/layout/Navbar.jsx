@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Dropdown from './Dropdown';
 import { Link } from 'react-router-dom';
 import { FaUser, FaShoppingCart } from "react-icons/fa";
-import { getCustomer, listCategories } from '../../modules/data';
+import { getCustomer, listCategories } from '../data';
 
 export default function Navbar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);

@@ -3,10 +3,10 @@ import React from 'react'
 
 export default function Dropdown({whichelement}) {
     const goBusiness = () => {
-        location.href = '/all-shirts/business-shirts'
+        location.href = '/category/business-shirts'
     }
     const goCasual = () => {
-        location.href = '/all-shirts/casual-shirts'
+        location.href = '/category/kakis'
     }
     return ( whichelement === 'Shop' ?
         <div className='w-full absolute bg-white shadow-md'>
