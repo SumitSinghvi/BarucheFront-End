@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Dropdown from './Dropdown';
 import { Link } from 'react-router-dom';
 import { FaUser, FaShoppingCart } from "react-icons/fa";
-import { getCustomer, listCategories } from '../data';
+import { retrieveCart } from '../cart/actions';
 
 export default function Navbar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -15,6 +15,18 @@ export default function Navbar() {
         setDropdownElement(element)
     };
     
+    const [itemNum, setItemNum] = useState(0);
+
+    useEffect(() => {
+        const fetchCart = async () => {
+          const cartDetails = await retrieveCart().then((cart) => cart);
+          if(cartDetails){
+          setItemNum(cartDetails.items.length);
+          }
+        }
+        fetchCart();
+    },[])
+
     useEffect(() => {
         const navSecondDiv = document.getElementById('navseconddiv');
         if (isDropdownOpen) {
@@ -50,7 +62,12 @@ export default function Navbar() {
                 <button className='flex gap-2 cursor-pointer'><span className='text-xs'>{customer_first_name}</span><FaUser /></button>
                 </Link>}
                 <div className='h-6 bg-gray-400 w-[1px]'></div>
-                <Link to={'/cart'}><i><FaShoppingCart /></i></Link>
+                <Link to="/cart" className="relative">
+                    <i><FaShoppingCart /></i>
+                    { itemNum > 0 &&
+                        <p className="bg-black text-white rounded-[50%] w-3 text-center text-[10px] absolute bottom-2 left-4">{itemNum}</p>
+                    }
+                </Link>
             </div>
         </div>
         <div>

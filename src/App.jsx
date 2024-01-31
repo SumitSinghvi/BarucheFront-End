@@ -9,6 +9,8 @@ import SignUp from './pages/account/SignUp';
 import Profile from './pages/account/Profile';
 import CategoryLayout from './pages/product/CategoryLayout';
 import ProductLayout from './pages/product/ProductLayout';
+import Cart from './pages/cartAndCheckout/Cart';
+import AddShipping from './pages/cartAndCheckout/AddShipping';
 
 export default function App() {
   return (
@@ -21,6 +23,8 @@ export default function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/category/*' element={<CategoryLayout />} />
           <Route path='/shirts/*' element={<ProductLayout />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/checkout' element={<AddShipping />} />
           <Route path="*" element={<NotFound />} /> 
         </Routes>
       </Layout>

@@ -43,7 +43,7 @@ export async function addToCart({
     quantity,
   }) {
     const cart = await getOrSetCart().then((cart) => cart)
-  
+    
     if (!cart) {
       return "Missing cart ID"
     }
@@ -53,8 +53,8 @@ export async function addToCart({
     }
   
     try {
-      await addItem({ cartId: cart.id, variantId, quantity })
-      console.log(cart)
+      await addItem({ cartId: cart.id, variantId:variantId, quantity:quantity })
+      .then((cart) => cart)
     } catch (e) {
       return "Error adding item to cart"
     }

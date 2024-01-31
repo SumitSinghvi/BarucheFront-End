@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getProductByHandle } from "../../modules/data";
+import { addToCart } from "../../modules/cart/actions";
 
 const ProductLayout = () => {
     const ProductHandle = location.href.split('shirts/')[1];
@@ -22,6 +23,18 @@ const ProductLayout = () => {
         setDropDown(prev => !prev);
 
     };
+
+    const handleAddItem = async (id, quantity) => {
+        try {
+            const cart = await addToCart({ variantId: id, quantity: quantity });
+            console.log(cart);
+            console.log("Added to cart");
+        } catch (error) {
+            console.error("Error adding to cart:", error);
+        }
+    }
+    
+
     console.log(product);
     return (
         <div>

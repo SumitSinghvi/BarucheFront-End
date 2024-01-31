@@ -27,6 +27,7 @@ export default function SignIn() {
         .then(()=>{
             getCustomer().then((data) => {
                 localStorage.setItem('customer_first_name', data.first_name);
+                localStorage.setItem('customer_last_name', data.last_name);
                 location.href = '/';
             })
         })

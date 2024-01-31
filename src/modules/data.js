@@ -167,7 +167,12 @@ export async function logOutCustomer() {
     console.log(err);
   }
 }
-  
+
+export async function listShippingOptions(cartId) {
+  return medusaClient.shippingOptions.listCartOptions(cartId)
+  .then((res) => res)
+}
+
 export async function addShippingAddress(data) {
     try {
       const { customer } = await medusaClient.customers.addresses.addAddress(data);
@@ -230,7 +235,7 @@ export async function retrievePricedProductById({ id, regionId }) {
 export async function getProductByHandle(handle) {
   
     try {
-      const { products } = await medusaClient.products.list({ handle });
+      const { products } = await medusaClient.products.list({ handle, currency_code:'inr', });
       const product = products[0];
       return { product };
     } catch (err) {
