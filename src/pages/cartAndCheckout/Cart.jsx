@@ -28,6 +28,12 @@ export default function Cart() {
             <li>Quick deliveries</li>
             <li>Superior quality</li>
           </div>
+          {!cart &&
+          (<div className='text-9xl justify-center items-center flex flex-col my-10 border-y py-4'>
+            <PiHandbagThin className='text-gray-400'/>
+            <p className='text-xl font-thin'>Your shopping cart is currently empty</p>
+          </div>)
+          }
           {cart && cart.items.length == 0 && 
           (<div className='text-9xl justify-center items-center flex flex-col my-10 border-y py-4'>
             <PiHandbagThin className='text-gray-400'/>
