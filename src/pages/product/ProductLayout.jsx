@@ -24,11 +24,12 @@ const ProductLayout = () => {
 
     };
 
-    const handleAddItem = async (id, quantity) => {
+    const handleAddItem = async (productID, quantity) => {
         try {
-            const cart = await addToCart({ variantId: id, quantity: quantity });
+            const cart = await addToCart({ variantId: productID, quantity: quantity });
             console.log(cart);
             console.log("Added to cart");
+            location.reload();
         } catch (error) {
             console.error("Error adding to cart:", error);
         }
