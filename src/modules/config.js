@@ -1,7 +1,7 @@
 import Medusa from "@medusajs/medusa-js"
 
 // Defaults to standard port for Medusa server
-let MEDUSA_BACKEND_URL = "http://35.200.144.243:9000"
+let MEDUSA_BACKEND_URL = "//35.200.144.243:9000"
 
 if (import.meta.env.VITE_MEDUSA_BACKEND_URL) {
   MEDUSA_BACKEND_URL = import.meta.env.VITE_MEDUSA_BACKEND_URL
