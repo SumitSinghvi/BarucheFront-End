@@ -52,7 +52,7 @@ export default function Navbar() {
                 <button className='hover:border-b-2 hover:border-black' onClick={() => { toggleDropdown('About') }}>About</button>
             </div>
             <Link to='/' className='font-semibold flex-1'> 
-            <p >BARUCHE</p>
+            <p>ZENITH</p>
             </Link> 
             <div className='flex gap-4 ml-auto items-center justify-center'>
                 {customer_first_name == null && <Link to={'/sign-in'}>
